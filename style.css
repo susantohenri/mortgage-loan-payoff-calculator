@@ -1,0 +1,37 @@
+.row-with-2-columns {
+  display: inline-grid;
+  grid-template-columns: auto auto;
+  width: 100%;
+}
+
+.row-with-2-columns table {
+  margin: 0 5px;
+  border-collapse: collapse;
+}
+
+.row-with-2-columns thead th {
+  background-color: #3b4e87;
+  color: white;
+  text-align: left;
+  padding-left: 5px;
+}
+
+.row-with-2-columns tfoot th {
+  background-color: #bfbfbf;
+  color: black;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.row-with-2-columns td {
+  padding: 0 5px;
+  color: black;
+}
+
+.row-with-2-columns td:nth-child(odd) {
+  background-color: #d3d9eb;
+}
+
+.row-with-2-columns td:nth-child(even) {
+  text-align: right;
+}
