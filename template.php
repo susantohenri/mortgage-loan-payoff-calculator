@@ -173,25 +173,25 @@
         <tbody>
           <tr>
             <td>Years Until Paid Off</td>
-            <td data-cell="K11" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K11" data-format="0,0.00" data-formula="" class="output">24.33</td>
           </tr>
           <tr>
             <td>Number of Payments</td>
-            <td data-cell="K12" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K12" data-format="0,0" data-formula="" class="output">292</td>
           </tr>
           <tr>
             <td>Last Payment Date</td>
-            <td data-cell="K13" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K13" data-format="" data-formula="" class="output">4/1/2043</td>
           </tr>
           <tr>
             <td>Total Payments</td>
-            <td data-cell="K14" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K14" data-format="0,0.00" data-formula="" class="output">271883.65</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Total Interest</th>
-            <th data-cell="K15" data-format="" data-formula="">85.68</th>
+            <th data-cell="K15" data-format="0,0.00" data-formula="">121883.65</th>
           </tr>
         </tfoot>
       </table>
@@ -207,33 +207,33 @@
         <tbody>
           <tr>
             <td>Variable or Fixed Rate</td>
-            <td><input data-cell="K18" data-format="" data-formula="" value="" type="text"></td>
+            <td><input data-cell="K18" data-format="" data-formula="" value="Fixed Rate" type="text"></td>
           </tr>
           <tr>
             <td>Years Rate Remains Fixed</td>
-            <td data-cell="K19" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K19" data-format="0,0" data-formula="" class="output">3</td>
           </tr>
           <tr>
             <td>Interest Rate Cap</td>
-            <td data-cell="K20" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K20" data-format="0.00%" data-formula="" class="output">12</td>
           </tr>
           <tr>
             <td>Interest Rate Minimum</td>
-            <td data-cell="K21" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K21" data-format="0.00%" data-formula="" class="output">4</td>
           </tr>
           <tr>
             <td>Periods Between Adjustments</td>
-            <td data-cell="K22" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K22" data-format="0,0" data-formula="" class="output">12</td>
           </tr>
           <tr>
             <td>Estimated Adjustment</td>
-            <td data-cell="K23" data-format="" data-formula="" class="output">150,000.00</td>
+            <td data-cell="K23" data-format="0,0.00%" data-formula="" class="output">0.25</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Highest Monthly Payment</th>
-            <th data-cell="K24" data-format="" data-formula="">85.68</th>
+            <th data-cell="K24" data-format="0,0.00" data-formula="">851.68</th>
           </tr>
         </tfoot>
       </table>
@@ -255,15 +255,15 @@
         <tbody>
           <tr>
             <td>Tax Bracket</td>
-            <td>25%</td>
+            <td><input data-cell="L38" data-format="0.00%" data-formula="" value="25" type="text"></td>
           </tr>
           <tr>
             <td>Effective Rate</td>
-            <td data-cell="K4" data-format="" data-formula="" class="output">25%</td>
+            <td data-cell="L39" data-format="0.000%" data-formula="" class="output">4.125</td>
           </tr>
           <tr>
             <td>Tax Returned</td>
-            <td data-cell="K4" data-format="" data-formula="" class="output">25%</td>
+            <td data-cell="L40" data-format="0,0" data-formula="" class="output">30471</td>
           </tr>
         </tbody>
       </table>
