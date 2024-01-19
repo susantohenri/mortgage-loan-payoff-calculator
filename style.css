@@ -5,8 +5,9 @@
 }
 
 .row-with-2-columns table {
-  margin: 0 5px;
+  margin-bottom: 20px;
   border-collapse: collapse;
+  width: 95%;
 }
 
 .row-with-2-columns thead th {
@@ -26,12 +27,20 @@
 .row-with-2-columns td {
   padding: 0 5px;
   color: black;
+  text-align: right;
 }
 
-.row-with-2-columns td:nth-child(odd) {
+.row-with-2-columns td:nth-child(odd),
+td.output {
   background-color: #d3d9eb;
 }
 
-.row-with-2-columns td:nth-child(even) {
-  text-align: right;
+.tax-deduction {
+  width: 50% !important;
+  float: right;
+}
+
+.tax-deduction th {
+  text-align: right !important;
+  padding-right: 5px;
 }
