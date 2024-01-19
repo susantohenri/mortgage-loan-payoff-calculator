@@ -30,6 +30,10 @@
   text-align: right;
 }
 
+.row-with-2-columns input[type="text"] {
+  width: 75px;
+}
+
 .row-with-2-columns td:nth-child(odd),
 td.output {
   background-color: #d3d9eb;
@@ -43,4 +47,20 @@ td.output {
 .tax-deduction th {
   text-align: right !important;
   padding-right: 5px;
+}
+
+.payment-schedule {
+  border-collapse: collapse;
+}
+
+table.payment-schedule thead th {
+  background-color: #a7b3d8;
+  color: black;
+  text-align: right;
+  line-height: normal;
+  font-weight: normal;
+}
+
+table.payment-schedule tfoot {
+  background-color: #d3d9eb;
 }
