@@ -61,6 +61,10 @@ table.payment-schedule thead th {
   font-weight: normal;
 }
 
-table.payment-schedule tfoot {
+table.payment-schedule tbody th {
   background-color: #d3d9eb;
+}
+
+.todo {
+  color: yellow !important;
 }
