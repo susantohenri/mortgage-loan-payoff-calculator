@@ -22,7 +22,7 @@
             <td><input data-cell="F5" data-format="0.00%" data-formula="" value="5.5" type="text"></td>
           </tr>
           <tr>
-            <td>Term Length (in Years)</td>
+            <td>F6 Length (in Years)</td>
             <td><input data-cell="F6" data-format="0" data-formula="" value="30" type="text"></td>
           </tr>
           <tr>
@@ -70,7 +70,7 @@
         <tfoot>
           <tr>
             <th>PITI Payment</th>
-            <th data-cell="F16" class="todo" data-format="0,0.00" data-formula="payment+F13/periods_per_year+F14/periods_per_year+F15*12/periods_per_year">1206.68</th>
+            <th data-cell="F16" class="todo" data-format="0,0.00" data-formula="F10+F13/A1+F14/A1+F15*12/A1">1206.68</th>
           </tr>
         </tfoot>
       </table>
@@ -120,8 +120,8 @@
 
       <!-- hidden-left:begin -->
       <input type="text" class="todo" data-cell="E31" data-format="$0,0" data-formula="SUM(MortgageCalculator!R:R)" value="306608">
-      <input type="text" data-cell="E32" data-format="$0,0" data-formula="E31-loan_amount" value="156608">
-      <input type="text" class="todo" data-cell="E33" data-format="periods_per_year" data-formula="" value="12">
+      <input type="text" data-cell="E32" data-format="$0,0" data-formula="E31-F4" value="156608">
+      <input type="text" class="todo" data-cell="E33" data-format="A1" data-formula="" value="12">
       <!-- hidden-left:end -->
 
       <!-- graph-left:begin -->
@@ -150,21 +150,21 @@
           </tr>
           <tr>
             <td>Date</td>
-            <td data-cell="K5" data-format="" data-formula="OFFSET(B43,1+K4*periods_per_year,0,1,1)" class="todo output">12/1/2023</td>
+            <td data-cell="K5" data-format="" data-formula="OFFSET(B43,1+K4*A1,0,1,1)" class="todo output">12/1/2023</td>
           </tr>
           <tr>
             <td>Interest Paid</td>
-            <td data-cell="K6" data-format="0,0.00" data-formula="SUM(OFFSET(E43,2,0,K4*periods_per_year,1))" class="todo output">39065.68</td>
+            <td data-cell="K6" data-format="0,0.00" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="todo output">39065.68</td>
           </tr>
           <tr>
             <td>First Payment Date</td>
-            <td data-cell="K7" data-format="0,0.00" data-formula="SUM(OFFSET(I43,2,0,K4*periods_per_year,1))" class="todo output">17035.12</td>
+            <td data-cell="K7" data-format="0,0.00" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="todo output">17035.12</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Monthly Payment</th>
-            <th class="todo" data-cell="K8" data-format="0,0.00" data-formula="IF(OFFSET(J43,1+K4*periods_per_year,0,1,1)='',0,OFFSET(J43,1+K4*periods_per_year,0,1,1))">132964.88</th>
+            <th class="todo" data-cell="K8" data-format="0,0.00" data-formula="IF(OFFSET(J43,1+K4*A1,0,1,1)='',0,OFFSET(J43,1+K4*A1,0,1,1))">132964.88</th>
           </tr>
         </tfoot>
       </table>
@@ -180,7 +180,7 @@
         <tbody>
           <tr>
             <td>Years Until Paid Off</td>
-            <td data-cell="K11" data-format="0,0.00" data-formula="ROUND(MAX(A45:A1605)/periods_per_year,2)" class="output">24.33</td>
+            <td data-cell="K11" data-format="0,0.00" data-formula="ROUND(MAX(A45:A1605)/A1,2)" class="output">24.33</td>
           </tr>
           <tr>
             <td>Number of Payments</td>
@@ -310,7 +310,7 @@
         <th data-cell="G44" data-format="" data-formula=""></th>
         <th data-cell="H44" data-format="" data-formula=""></th>
         <th data-cell="I44" data-format="" data-formula=""></th>
-        <th data-cell="J44" data-format="$0,0.00" data-formula="loan_amount"></th>
+        <th data-cell="J44" data-format="$0,0.00" data-formula="F4"></th>
         <th data-cell="K44" data-format="" data-formula=""></th>
         <th data-cell="L44" data-format="" data-formula=""></th>
       </tr>
@@ -318,12 +318,12 @@
         <?php $prev_row = $row - 1; ?>
         <tr>
           <td data-cell="<?= "A{$row}" ?>" data-format="" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=nper,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
-          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(OR(periods_per_year=26,periods_per_year=52),IF(periods_per_year=26,IF(A{$row}=1,fpdate,B{$prev_row}+14),IF(periods_per_year=52,IF(A{$row}=1,fpdate,B{$prev_row}+7),'n/a')),IF(periods_per_year=24,DATE(YEAR(fpdate),MONTH(fpdate)+(A{$row}-1)/2+IF(AND(DAY(fpdate)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(fpdate)&gt;=15,DAY(fpdate)-14,DAY(fpdate)+14),DAY(fpdate))),IF(DAY(DATE(YEAR(fpdate),MONTH(fpdate)+A{$row}-1,DAY(fpdate)))<&gt;DAY(fpdate),DATE(YEAR(fpdate),MONTH(fpdate)+A{$row},0),DATE(YEAR(fpdate),MONTH(fpdate)+A{$row}-1,DAY(fpdate))))))" ?>"></td>
-          <td data-cell="<?= "C{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(MOD(A{$row},periods_per_year)=0,A{$row}/periods_per_year,''))" ?>"></td>
-          <td data-cell="<?= "D{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(variable,IF(OR(A{$row}=1,A{$row}<K$19*periods_per_year),start_rate,MIN(K$20,IF(MOD(A{$row}-1,K$22)=0,MAX(K$21,D{$prev_row}+K$23),D{$prev_row}))),start_rate))" ?>"></td>
-          <td data-cell="<?= "E{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/CP)^(CP/periods_per_year))-1)*J{$prev_row},2))" ?>"></td>
-          <td data-cell="<?= "F{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=nper,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/CP)^(CP/periods_per_year))-1,nper-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
-          <td data-cell="<?= "G{$row}" ?>" data-format="" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(MOD(A{$row}-F23,periods_per_year)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,periods_per_year)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)-F{$row}))))" ?>"></td>
+          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(OR(A1=26,A1=52),IF(A1=26,IF(A{$row}=1,fpdate,B{$prev_row}+14),IF(A1=52,IF(A{$row}=1,fpdate,B{$prev_row}+7),'n/a')),IF(A1=24,DATE(YEAR(fpdate),MONTH(fpdate)+(A{$row}-1)/2+IF(AND(DAY(fpdate)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(fpdate)&gt;=15,DAY(fpdate)-14,DAY(fpdate)+14),DAY(fpdate))),IF(DAY(DATE(YEAR(fpdate),MONTH(fpdate)+A{$row}-1,DAY(fpdate)))<&gt;DAY(fpdate),DATE(YEAR(fpdate),MONTH(fpdate)+A{$row},0),DATE(YEAR(fpdate),MONTH(fpdate)+A{$row}-1,DAY(fpdate))))))" ?>"></td>
+          <td data-cell="<?= "C{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(MOD(A{$row},A1)=0,A{$row}/A1,''))" ?>"></td>
+          <td data-cell="<?= "D{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(variable,IF(OR(A{$row}=1,A{$row}<K$19*A1),F5,MIN(K$20,IF(MOD(A{$row}-1,K$22)=0,MAX(K$21,D{$prev_row}+K$23),D{$prev_row}))),F5))" ?>"></td>
+          <td data-cell="<?= "E{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/CP)^(CP/A1))-1)*J{$prev_row},2))" ?>"></td>
+          <td data-cell="<?= "F{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=nper,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/CP)^(CP/A1))-1,nper-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
+          <td data-cell="<?= "G{$row}" ?>" data-format="" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(MOD(A{$row}-F23,A1)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,A1)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)-F{$row}))))" ?>"></td>
           <td data-cell="<?= "H{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "I{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "J{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',J{$prev_row}-I{$row})" ?>"></td>
