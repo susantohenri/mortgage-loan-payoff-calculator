@@ -41,7 +41,7 @@
         <tfoot>
           <tr>
             <th data-cell="E10" data-format="" data-formula="CONCAT(F9, ' Payment')">Monthly Payment</th>
-            <th class="todo" data-cell="F10" data-format="0.00" data-formula="">85.68</th>
+            <th class="todo" data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+MortgageCalculator!F5/CP)^(CP/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+MortgageCalculator!F5/CP)^(CP/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/CP)^(CP/A1))-1,nper,F4),2))))">85.68</th>
           </tr>
         </tfoot>
       </table>
@@ -150,20 +150,20 @@
           </tr>
           <tr>
             <td>Date</td>
-            <td data-cell="K5" data-format="" data-formula="OFFSET(B43,1+K4*A1,0,1,1)" class="todo output">12/1/2023</td>
+            <td data-cell="K5" data-format="" data-formula="OFFSET(B43,1+K4*A1,0,1,1)" class="output">12/1/2023</td>
           </tr>
           <tr>
             <td>Interest Paid</td>
             <td data-cell="K6" data-format="0,0.00" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="todo output">39065.68</td>
           </tr>
           <tr>
-            <td>First Payment Date</td>
+            <td>Principal Paid</td>
             <td data-cell="K7" data-format="0,0.00" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="todo output">17035.12</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
-            <th>Monthly Payment</th>
+            <th>Outstanding Balance</th>
             <th class="todo" data-cell="K8" data-format="0,0.00" data-formula="IF(OFFSET(J43,1+K4*A1,0,1,1)='',0,OFFSET(J43,1+K4*A1,0,1,1))">132964.88</th>
           </tr>
         </tfoot>
@@ -285,18 +285,18 @@
   <table class="payment-schedule">
     <thead>
       <tr>
-        <th>No.</th>
-        <th>Payment Date</th>
-        <th>Year</th>
-        <th>Interest Rate</th>
-        <th>Interest Due</th>
-        <th>Payment Due</th>
-        <th>Extra Payments</th>
-        <th>Additional Payments</th>
-        <th>Principal Paid</th>
-        <th>Balance</th>
-        <th>Tax Refunded</th>
-        <th>Cmltv Tax Returned</th>
+        <th data-cell="A43">No.</th>
+        <th data-cell="B43">Payment Date</th>
+        <th data-cell="C43">Year</th>
+        <th data-cell="D43">Interest Rate</th>
+        <th data-cell="E43">Interest Due</th>
+        <th data-cell="F43">Payment Due</th>
+        <th data-cell="G43">Extra Payments</th>
+        <th data-cell="H43">Additional Payments</th>
+        <th data-cell="I43">Principal Paid</th>
+        <th data-cell="J43">Balance</th>
+        <th data-cell="K43">Tax Refunded</th>
+        <th data-cell="L43">Cmltv Tax Returned</th>
       </tr>
     </thead>
     <tbody>
