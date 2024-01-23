@@ -11,23 +11,23 @@
       <tbody>
         <tr>
           <td data-cell="V4" data-format="" data-formula="">Compound Period</td>
-          <td data-cell="W4" data-format="" data-formula="INDEX({2,12},MATCH(F8,compound_periods,0))"></td>
+          <td data-cell="W4" data-format="" data-formula="INDEX({2,12},MATCH(F8,V14:V15,0))"></td>
         </tr>
         <tr>
-          <td data-cell="V5" data-format="" data-formula="">CP</td>
-          <td data-cell="W5" data-format="" data-formula="INDEX({2,12},MATCH(F8,compound_periods,0))"></td>
+          <td data-cell="V5" data-format="" data-formula="">W5</td>
+          <td data-cell="W5" data-format="" data-formula="INDEX({2,12},MATCH(F8,V14:V15,0))"></td>
         </tr>
         <tr>
           <td data-cell="V6" data-format="" data-formula="">Monthly Payment</td>
-          <td data-cell="W6" data-format="" data-formula="-PMT((((1+F11/CP)^(CP/12))-1),term*12,loan_amount)"></td>
+          <td data-cell="W6" data-format="" data-formula="-PMT((((1+F11/W5)^(W5/12))-1),F6*12,F4)"></td>
         </tr>
         <tr>
           <td data-cell="V7" data-format="" data-formula="">Months per Period</td>
-          <td data-cell="W7" data-format="" data-formula="INDEX({1,0.5,0.5,0.25,0.5,0.25},MATCH(F9,frequency,0))"></td>
+          <td data-cell="W7" data-format="" data-formula="INDEX({1,0.5,0.5,0.25,0.5,0.25},MATCH(F9,V18:V23,0))"></td>
         </tr>
         <tr>
-          <td data-cell="V8" data-format="" data-formula="">nper</td>
-          <td data-cell="W8" data-format="" data-formula="term*periods_per_year"></td>
+          <td data-cell="V8" data-format="" data-formula="">W8</td>
+          <td data-cell="W8" data-format="" data-formula="F6*W10"></td>
         </tr>
         <tr>
           <td data-cell="V9" data-format="" data-formula="">Payments</td>
@@ -35,7 +35,7 @@
         </tr>
         <tr>
           <td data-cell="V10" data-format="" data-formula="">Periods per Year</td>
-          <td data-cell="W10" data-format="" data-formula="INDEX({12,24,26,52,26,52},MATCH(F9,frequency,0))"></td>
+          <td data-cell="W10" data-format="" data-formula="INDEX({12,24,26,52,26,52},MATCH(F9,V18:V23,0))"></td>
         </tr>
         <tr>
           <td data-cell="V11" data-format="" data-formula="">Variable</td>
@@ -131,7 +131,7 @@
         <tfoot>
           <tr>
             <th data-cell="E10" data-format="" data-formula="CONCAT(F9, ' Payment')">Monthly Payment</th>
-            <th class="todo" data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+F5/CP)^(CP/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+F5/CP)^(CP/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/CP)^(CP/A1))-1,nper,F4),2))))">85.68</th>
+            <th class="todo" data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+F5/W5)^(W5/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+F5/W5)^(W5/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/W5)^(W5/A1))-1,W8,F4),2))))">85.68</th>
           </tr>
         </tfoot>
       </table>
@@ -408,13 +408,13 @@
       <?php for ($row = 45; $row <= 336; $row++) : ?>
         <?php $prev_row = $row - 1; ?>
         <tr>
-          <td data-cell="<?= "A{$row}" ?>" data-format="" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=nper,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
-          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(OR(A1=26,A1=52),IF(A1=26,IF(A{$row}=1,fpdate,B{$prev_row}+14),IF(A1=52,IF(A{$row}=1,fpdate,B{$prev_row}+7),'n/a')),IF(A1=24,DATE(YEAR(fpdate),MONTH(fpdate)+(A{$row}-1)/2+IF(AND(DAY(fpdate)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(fpdate)&gt;=15,DAY(fpdate)-14,DAY(fpdate)+14),DAY(fpdate))),IF(DAY(DATE(YEAR(fpdate),MONTH(fpdate)+A{$row}-1,DAY(fpdate)))<&gt;DAY(fpdate),DATE(YEAR(fpdate),MONTH(fpdate)+A{$row},0),DATE(YEAR(fpdate),MONTH(fpdate)+A{$row}-1,DAY(fpdate))))))" ?>"></td>
+          <td data-cell="<?= "A{$row}" ?>" data-format="" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
+          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(OR(A1=26,A1=52),IF(A1=26,IF(A{$row}=1,F7,B{$prev_row}+14),IF(A1=52,IF(A{$row}=1,F7,B{$prev_row}+7),'n/a')),IF(A1=24,DATE(YEAR(F7),MONTH(F7)+(A{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))),IF(DAY(DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7)))<&gt;DAY(F7),DATE(YEAR(F7),MONTH(F7)+A{$row},0),DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7))))))" ?>"></td>
           <td data-cell="<?= "C{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(MOD(A{$row},A1)=0,A{$row}/A1,''))" ?>"></td>
-          <td data-cell="<?= "D{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(variable,IF(OR(A{$row}=1,A{$row}<K$19*A1),F5,MIN(K$20,IF(MOD(A{$row}-1,K$22)=0,MAX(K$21,D{$prev_row}+K$23),D{$prev_row}))),F5))" ?>"></td>
-          <td data-cell="<?= "E{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/CP)^(CP/A1))-1)*J{$prev_row},2))" ?>"></td>
-          <td data-cell="<?= "F{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=nper,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/CP)^(CP/A1))-1,nper-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
-          <td data-cell="<?= "G{$row}" ?>" data-format="" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(MOD(A{$row}-F23,A1)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,A1)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)-F{$row}))))" ?>"></td>
+          <td data-cell="<?= "D{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(W11,IF(OR(A{$row}=1,A{$row}<K$19*A1),F5,MIN(K$20,IF(MOD(A{$row}-1,K$22)=0,MAX(K$21,D{$prev_row}+K$23),D{$prev_row}))),F5))" ?>"></td>
+          <td data-cell="<?= "E{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/W5)^(W5/A1))-1)*J{$prev_row},2))" ?>"></td>
+          <td data-cell="<?= "F{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=W8,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/W5)^(W5/12))-1,(W8-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/W5)^(W5/12))-1,(W8-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/W5)^(W5/A1))-1,W8-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
+          <td data-cell="<?= "G{$row}" ?>" data-format="" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+IF(MOD(A{$row}-F23,A1)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,A1)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)-F{$row}))))" ?>"></td>
           <td data-cell="<?= "H{$row}" ?>" data-format="" class="todo" xdata-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "I{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "J{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',J{$prev_row}-I{$row})" ?>"></td>
