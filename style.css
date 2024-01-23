@@ -66,5 +66,6 @@ table.payment-schedule tbody th {
 }
 
 .todo {
+  background-color: red !important;
   color: yellow !important;
 }

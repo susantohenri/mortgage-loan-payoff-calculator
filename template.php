@@ -1,5 +1,95 @@
 <div class="calx">
-  <input type="hidden" data-cell="A1" value="12">
+
+  <!-- hidden tables: begin -->
+  <div class="row-with-2-columns">
+    <table>
+      <thead>
+        <tr>
+          <th data-cell="V3" data-format="" data-formula="" colspan="2">Formulas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-cell="V4" data-format="" data-formula="">Compound Period</td>
+          <td data-cell="W4" data-format="" data-formula="INDEX({2,12},MATCH(F8,compound_periods,0))"></td>
+        </tr>
+        <tr>
+          <td data-cell="V5" data-format="" data-formula="">CP</td>
+          <td data-cell="W5" data-format="" data-formula="INDEX({2,12},MATCH(F8,compound_periods,0))"></td>
+        </tr>
+        <tr>
+          <td data-cell="V6" data-format="" data-formula="">Monthly Payment</td>
+          <td data-cell="W6" data-format="" data-formula="-PMT((((1+F11/CP)^(CP/12))-1),term*12,loan_amount)"></td>
+        </tr>
+        <tr>
+          <td data-cell="V7" data-format="" data-formula="">Months per Period</td>
+          <td data-cell="W7" data-format="" data-formula="INDEX({1,0.5,0.5,0.25,0.5,0.25},MATCH(F9,frequency,0))"></td>
+        </tr>
+        <tr>
+          <td data-cell="V8" data-format="" data-formula="">nper</td>
+          <td data-cell="W8" data-format="" data-formula="term*periods_per_year"></td>
+        </tr>
+        <tr>
+          <td data-cell="V9" data-format="" data-formula="">Payments</td>
+          <td data-cell="W9" data-format="" data-formula="MAX(A45:A1604)"></td>
+        </tr>
+        <tr>
+          <td data-cell="V10" data-format="" data-formula="">Periods per Year</td>
+          <td data-cell="W10" data-format="" data-formula="INDEX({12,24,26,52,26,52},MATCH(F9,frequency,0))"></td>
+        </tr>
+        <tr>
+          <td data-cell="V11" data-format="" data-formula="">Variable</td>
+          <td data-cell="W11" data-format="" data-formula="IF(K18='Variable Rate',TRUE,FALSE)"></td>
+        </tr>
+      </tbody>
+    </table>
+    <span></span>
+    <table>
+      <thead>
+        <tr>
+          <th data-cell="V13" data-format="" data-formula="">Compound Periods</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-cell="V14" data-format="" data-formula="{'Semi-Annually';'Monthly'}"></td>
+        </tr>
+        <tr>
+          <td data-cell="V15" data-format="" data-formula="">Monthly</td>
+        </tr>
+      </tbody>
+    </table>
+    <span></span>
+    <table>
+      <thead>
+        <tr>
+          <th data-cell="V17" data-format="" data-formula="">Frequency</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-cell="V18" data-format="" data-formula="{'Monthly';'Semi-Monthly';'Bi-Weekly';'Weekly';'Acc Bi-Weekly';'Acc Weekly'}"></td>
+        </tr>
+        <tr>
+          <td data-cell="V19" data-format="" data-formula="">Semi Monthly</td>
+        </tr>
+        <tr>
+          <td data-cell="V20" data-format="" data-formula="">Bi-Weekly</td>
+        </tr>
+        <tr>
+          <td data-cell="V21" data-format="" data-formula="">Weekly</td>
+        </tr>
+        <tr>
+          <td data-cell="V22" data-format="" data-formula="">Acc Bi-Weekly</td>
+        </tr>
+        <tr>
+          <td data-cell="V23" data-format="" data-formula="">Acc Weekly</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- hidden tables: end -->
+
   <div class="row-with-2-columns">
 
     <!-- left:begin -->
@@ -41,7 +131,7 @@
         <tfoot>
           <tr>
             <th data-cell="E10" data-format="" data-formula="CONCAT(F9, ' Payment')">Monthly Payment</th>
-            <th class="todo" data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+MortgageCalculator!F5/CP)^(CP/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+MortgageCalculator!F5/CP)^(CP/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/CP)^(CP/A1))-1,nper,F4),2))))">85.68</th>
+            <th class="todo" data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+F5/CP)^(CP/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+F5/CP)^(CP/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/CP)^(CP/A1))-1,nper,F4),2))))">85.68</th>
           </tr>
         </tfoot>
       </table>
@@ -52,7 +142,7 @@
         <tbody>
           <tr>
             <td>Home Value or Price</td>
-            <td><input data-cell="F12" data-format="0,0.00" data-formula="" value="150000" type="text"></td>
+            <td><input data-cell="F12" data-format="0,0.00" data-formula="F4" value="150000" type="text"></td>
           </tr>
           <tr>
             <td>Yearly Property Taxes</td>
@@ -119,7 +209,7 @@
       <!-- table-left-3:end -->
 
       <!-- hidden-left:begin -->
-      <input type="text" class="todo" data-cell="E31" data-format="$0,0" data-formula="SUM(MortgageCalculator!R:R)" value="306608">
+      <input type="text" class="todo" data-cell="E31" data-format="$0,0" data-formula="SUM(R:R)" value="306608">
       <input type="text" data-cell="E32" data-format="$0,0" data-formula="E31-F4" value="156608">
       <input type="text" class="todo" data-cell="E33" data-format="A1" data-formula="" value="12">
       <!-- hidden-left:end -->
@@ -282,6 +372,7 @@
   </div>
 
   <h4>Payment Schedule</h4>
+
   <table class="payment-schedule">
     <thead>
       <tr>
@@ -324,7 +415,7 @@
           <td data-cell="<?= "E{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/CP)^(CP/A1))-1)*J{$prev_row},2))" ?>"></td>
           <td data-cell="<?= "F{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=nper,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/CP)^(CP/12))-1,(nper-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/CP)^(CP/A1))-1,nper-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
           <td data-cell="<?= "G{$row}" ?>" data-format="" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)+IF(MOD(A{$row}-F23,A1)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,A1)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,int)=0),F20,0)-F{$row}))))" ?>"></td>
-          <td data-cell="<?= "H{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
+          <td data-cell="<?= "H{$row}" ?>" data-format="" class="todo" xdata-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "I{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "J{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',J{$prev_row}-I{$row})" ?>"></td>
           <td data-cell="<?= "K{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',L38*E{$row})" ?>"></td>
@@ -333,4 +424,5 @@
       <?php endfor; ?>
     </tbody>
   </table>
+
 </div>
