@@ -1,7 +1,17 @@
 <div class="calx">
 
+  <!-- VARIABLES:BEGIN --
+  CP = W5
+  term = F6
+  loan_amount = F4
+  months_per_period = W7
+  nper = W8
+  periods_per_year = W10
+  payment = F10
+  !-- VARIABLES:END -->
+
   <!-- hidden tables: begin -->
-  <div class="row-with-2-columns">
+  <div class="row-with-2-columns hidden">
     <table>
       <thead>
         <tr>
@@ -11,23 +21,23 @@
       <tbody>
         <tr>
           <td data-cell="V4" data-format="" data-formula="">Compound Period</td>
-          <td data-cell="W4" data-format="" data-formula="INDEX({2,12},MATCH(F8,V14:V15,0))"></td>
+          <td data-cell="W4" data-format="" data-formula="IF('Monthly' = F8, 12, 2)"></td>
         </tr>
         <tr>
-          <td data-cell="V5" data-format="" data-formula="">W5</td>
-          <td data-cell="W5" data-format="" data-formula="INDEX({2,12},MATCH(F8,V14:V15,0))"></td>
+          <td data-cell="V5" data-format="" data-formula="">CP</td>
+          <td data-cell="W5" data-format="" data-formula="IF('Monthly' = F8, 12, 2)"></td>
         </tr>
         <tr>
           <td data-cell="V6" data-format="" data-formula="">Monthly Payment</td>
-          <td data-cell="W6" data-format="" data-formula="-PMT((((1+F11/W5)^(W5/12))-1),F6*12,F4)"></td>
+          <td data-cell="W6" data-format="$0,0.00" data-formula="-PMT((((1+F11/W5)^(W5/12))-1),F6*12,F4)"></td>
         </tr>
         <tr>
           <td data-cell="V7" data-format="" data-formula="">Months per Period</td>
-          <td data-cell="W7" data-format="" data-formula="INDEX({1,0.5,0.5,0.25,0.5,0.25},MATCH(F9,V18:V23,0))"></td>
+          <td data-cell="W7" data-format="" data-formula="IF(F9='Monthly', 1, IF(F9='Semi-Monthly', 0.5, IF(F9='Bi-Weekly', 0.5, IF(F9='Weekly', 0.25, IF(F9='Acc Bi-Weekly', 0.5, IF(F9='Acc Weekly', 0.25, 0))))))"></td>
         </tr>
         <tr>
-          <td data-cell="V8" data-format="" data-formula="">W8</td>
-          <td data-cell="W8" data-format="" data-formula="F6*W10"></td>
+          <td data-cell="V8" data-format="" data-formula="">nper</td>
+          <td data-cell="W8" data-format="0.00" data-formula="F6*W10"></td>
         </tr>
         <tr>
           <td data-cell="V9" data-format="" data-formula="">Payments</td>
@@ -35,7 +45,7 @@
         </tr>
         <tr>
           <td data-cell="V10" data-format="" data-formula="">Periods per Year</td>
-          <td data-cell="W10" data-format="" data-formula="INDEX({12,24,26,52,26,52},MATCH(F9,V18:V23,0))"></td>
+          <td data-cell="W10" data-format="" data-formula="IF(F9='Monthly', 12, IF(F9='Semi-Monthly', 24, IF(F9='Bi-Weekly', 26, IF(F9='Weekly', 52, IF(F9='Acc Bi-Weekly', 26, IF(F9='Acc Weekly', 52, 0))))))"></td>
         </tr>
         <tr>
           <td data-cell="V11" data-format="" data-formula="">Variable</td>
@@ -43,7 +53,7 @@
         </tr>
       </tbody>
     </table>
-    <span></span>
+
     <table>
       <thead>
         <tr>
@@ -52,14 +62,14 @@
       </thead>
       <tbody>
         <tr>
-          <td data-cell="V14" data-format="" data-formula="{'Semi-Annually';'Monthly'}"></td>
+          <td data-cell="V14" data-format="" data-formula="'Semi-Annually'"></td>
         </tr>
         <tr>
-          <td data-cell="V15" data-format="" data-formula="">Monthly</td>
+          <td data-cell="V15" data-format="" data-formula="'Monthly'"></td>
         </tr>
       </tbody>
     </table>
-    <span></span>
+
     <table>
       <thead>
         <tr>
@@ -68,25 +78,26 @@
       </thead>
       <tbody>
         <tr>
-          <td data-cell="V18" data-format="" data-formula="{'Monthly';'Semi-Monthly';'Bi-Weekly';'Weekly';'Acc Bi-Weekly';'Acc Weekly'}"></td>
+          <td data-cell="V18" data-format="" data-formula="'Monthly'"></td>
         </tr>
         <tr>
-          <td data-cell="V19" data-format="" data-formula="">Semi Monthly</td>
+          <td data-cell="V19" data-format="" data-formula="'Semi Monthly'"></td>
         </tr>
         <tr>
-          <td data-cell="V20" data-format="" data-formula="">Bi-Weekly</td>
+          <td data-cell="V20" data-format="" data-formula="'Bi-Weekly'"></td>
         </tr>
         <tr>
-          <td data-cell="V21" data-format="" data-formula="">Weekly</td>
+          <td data-cell="V21" data-format="" data-formula="'Weekly'"></td>
         </tr>
         <tr>
-          <td data-cell="V22" data-format="" data-formula="">Acc Bi-Weekly</td>
+          <td data-cell="V22" data-format="" data-formula="'Acc Bi-Weekly'"></td>
         </tr>
         <tr>
-          <td data-cell="V23" data-format="" data-formula="">Acc Weekly</td>
+          <td data-cell="V23" data-format="" data-formula="'Acc Weekly'"></td>
         </tr>
       </tbody>
     </table>
+
   </div>
   <!-- hidden tables: end -->
 
@@ -112,7 +123,7 @@
             <td><input data-cell="F5" data-format="0.00%" data-formula="" value="5.5" type="text"></td>
           </tr>
           <tr>
-            <td>F6 Length (in Years)</td>
+            <td>Term Length (in Years)</td>
             <td><input data-cell="F6" data-format="0" data-formula="" value="30" type="text"></td>
           </tr>
           <tr>
@@ -121,17 +132,31 @@
           </tr>
           <tr>
             <td>Compound Period</td>
-            <td><input data-cell="F8" data-format="" data-formula="" value="Monthly" type="text"></td>
+            <td>
+              <select data-cell="F8" data-format="" data-formula="">
+                <option value="Monthly">Monthly</option>
+                <option value="Semi-Annually">Semi-Annually</option>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>Payment Frequency</td>
-            <td><input data-cell="F9" data-format="" data-formula="" value="Monthly" type="text"></td>
+            <td>
+              <select data-cell="F9" data-format="" data-formula="">
+                <option value="Monthly">Monthly</option>
+                <option value="Semi-Monthly">Semi-Monthly</option>
+                <option value="Bi-Weekly">Bi-Weekly</option>
+                <option value="Weekly">Weekly</option>
+                <option value="Bi-Weekly">Acc Bi-Weekly</option>
+                <option value="Weekly">Acc Weekly</option>
+              </select>
+            </td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th data-cell="E10" data-format="" data-formula="CONCAT(F9, ' Payment')">Monthly Payment</th>
-            <th class="todo" data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+F5/W5)^(W5/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+F5/W5)^(W5/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/W5)^(W5/A1))-1,W8,F4),2))))">85.68</th>
+            <th data-cell="F10" data-format="0.00" data-formula="(IF(F9='Acc Bi-Weekly',ROUND((-PMT((((1+F5/W5)^(W5/12))-1),F6*12,F4))/2,2),IF(F9='Acc Weekly',ROUND((-PMT((((1+F5/W5)^(W5/12))-1),F6*12,F4))/4,2),ROUND(-PMT(((1+F5/W5)^(W5/W10))-1,W8,F4),2))))">85.68</th>
           </tr>
         </tfoot>
       </table>
@@ -160,7 +185,7 @@
         <tfoot>
           <tr>
             <th>PITI Payment</th>
-            <th data-cell="F16" class="todo" data-format="0,0.00" data-formula="F10+F13/A1+F14/A1+F15*12/A1">1206.68</th>
+            <th data-cell="F16" data-format="0,0.00" data-formula="F10+F13/W10+F14/W10+F15*12/W10">1206.68</th>
           </tr>
         </tfoot>
       </table>
@@ -191,27 +216,27 @@
             <td><input data-cell="F22" data-format="$0,0.00" data-formula="" value="1000" type="text"></td>
           </tr>
           <tr>
-            <td class="todo" data-cell="E23" data-format="" data-formula="CONCAT('Payment # (1-', E33))">Payment # (1-12)</td>
+            <td data-cell="E23" data-format="" data-formula="CONCAT('Payment # (1-', E33, ')')">Payment # (1-12)</td>
             <td><input data-cell="F23" data-format="0,0" data-formula="" value="7" type="text"></td>
           </tr>
           <tr>
             <td>Total Extra Payments</td>
-            <td data-cell="F24" data-format="0,0.00" data-formula="SUM(G45:H1604)" class="output">24000</td>
+            <td data-cell="F24" data-format="0,0.00" data-progress="wip" data-formula="SUM(G45:H1604)" class="output">24000</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Interest Savings</th>
-            <th data-cell="F25" data-format="0,0.00" data-formula="IF((E32-K15)<0,0,(E32-K15))">32724.1</th>
+            <th data-cell="F25" data-format="0,0.00" data-progress="wip" data-formula="IF((E32-K15)<0,0,(E32-K15))">32724.1</th>
           </tr>
         </tfoot>
       </table>
       <!-- table-left-3:end -->
 
       <!-- hidden-left:begin -->
-      <input type="text" class="todo" data-cell="E31" data-format="$0,0" data-formula="SUM(R:R)" value="306608">
-      <input type="text" data-cell="E32" data-format="$0,0" data-formula="E31-F4" value="156608">
-      <input type="text" class="todo" data-cell="E33" data-format="A1" data-formula="" value="12">
+      <input type="text" data-cell="E31" data-format="$0,0" data-progress="wip" data-formula="SUM(R:R)" value="306608">
+      <input type="text" data-cell="E32" data-format="$0,0" data-progress="wip" data-formula="E31-F4" value="156608">
+      <input type="text" data-cell="E33" data-format="W10" data-formula="" value="12">
       <!-- hidden-left:end -->
 
       <!-- graph-left:begin -->
@@ -240,21 +265,21 @@
           </tr>
           <tr>
             <td>Date</td>
-            <td data-cell="K5" data-format="" data-formula="OFFSET(B43,1+K4*A1,0,1,1)" class="output">12/1/2023</td>
+            <td data-cell="K5" data-format="" data-progress="wip" data-formula="OFFSET(B43,1+K4*A1,0,1,1)" class="output">12/1/2023</td>
           </tr>
           <tr>
             <td>Interest Paid</td>
-            <td data-cell="K6" data-format="0,0.00" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="todo output">39065.68</td>
+            <td data-cell="K6" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="output">39065.68</td>
           </tr>
           <tr>
             <td>Principal Paid</td>
-            <td data-cell="K7" data-format="0,0.00" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="todo output">17035.12</td>
+            <td data-cell="K7" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="output">17035.12</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Outstanding Balance</th>
-            <th class="todo" data-cell="K8" data-format="0,0.00" data-formula="IF(OFFSET(J43,1+K4*A1,0,1,1)='',0,OFFSET(J43,1+K4*A1,0,1,1))">132964.88</th>
+            <th data-cell="K8" data-format="0,0.00" data-progress="wip" data-formula="IF(OFFSET(J43,1+K4*A1,0,1,1)='',0,OFFSET(J43,1+K4*A1,0,1,1))">132964.88</th>
           </tr>
         </tfoot>
       </table>
@@ -270,25 +295,25 @@
         <tbody>
           <tr>
             <td>Years Until Paid Off</td>
-            <td data-cell="K11" data-format="0,0.00" data-formula="ROUND(MAX(A45:A1605)/A1,2)" class="output">24.33</td>
+            <td data-cell="K11" data-format="0,0.00" data-progress="wip" data-formula="ROUND(MAX(A45:A1605)/A1,2)" class="output">24.33</td>
           </tr>
           <tr>
             <td>Number of Payments</td>
-            <td data-cell="K12" data-format="0,0" data-formula="MAX(A43:A1605)" class="output">292</td>
+            <td data-cell="K12" data-format="0,0" data-progress="wip" data-formula="MAX(A43:A1605)" class="output">292</td>
           </tr>
           <tr>
             <td>Last Payment Date</td>
-            <td data-cell="K13" data-format="" data-formula="OFFSET(B43,MAX(A45:A1605)+1,0,1,1)" class="output">4/1/2043</td>
+            <td data-cell="K13" data-format="" data-progress="wip" data-formula="OFFSET(B43,MAX(A45:A1605)+1,0,1,1)" class="output">4/1/2043</td>
           </tr>
           <tr>
             <td>Total Payments</td>
-            <td data-cell="K14" data-format="0,0.00" data-formula="SUM(E45:E1604)+SUM(I45:I1604)" class="output">271883.65</td>
+            <td data-cell="K14" data-format="0,0.00" data-progress="wip" data-formula="SUM(E45:E1604)+SUM(I45:I1604)" class="output">271883.65</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Total Interest</th>
-            <th data-cell="K15" data-format="0,0.00" data-formula="SUM(E45:E1604)">121883.65</th>
+            <th data-cell="K15" data-format="0,0.00" data-progress="wip" data-formula="SUM(E45:E1604)">121883.65</th>
           </tr>
         </tfoot>
       </table>
@@ -330,7 +355,7 @@
         <tfoot>
           <tr>
             <th>Highest Monthly Payment</th>
-            <th data-cell="K24" data-format="0,0.00" data-formula="MAX(F45:F1604)">851.68</th>
+            <th data-cell="K24" data-format="0,0.00" data-progress="wip" data-formula="MAX(F45:F1604)">851.68</th>
           </tr>
         </tfoot>
       </table>
@@ -356,11 +381,11 @@
           </tr>
           <tr>
             <td>Effective Rate</td>
-            <td data-cell="L39" data-format="0.000%" data-formula="(1-L38)*F5" class="output">4.125</td>
+            <td data-cell="L39" data-format="0.000%" data-progress="wip" data-formula="(1-L38)*F5" class="output">4.125</td>
           </tr>
           <tr>
             <td>Tax Returned</td>
-            <td data-cell="L40" data-format="0,0" data-formula="SUM(K45:K1604)" class="output">30471</td>
+            <td data-cell="L40" data-format="0,0" data-progress="wip" data-formula="SUM(K45:K1604)" class="output">30471</td>
           </tr>
         </tbody>
       </table>
@@ -401,25 +426,25 @@
         <th data-cell="G44" data-format="" data-formula=""></th>
         <th data-cell="H44" data-format="" data-formula=""></th>
         <th data-cell="I44" data-format="" data-formula=""></th>
-        <th data-cell="J44" data-format="$0,0.00" data-formula="F4"></th>
+        <th data-cell="J44" data-format="$0,0.00" data-progress="wip" data-formula="F4"></th>
         <th data-cell="K44" data-format="" data-formula=""></th>
         <th data-cell="L44" data-format="" data-formula=""></th>
       </tr>
       <?php for ($row = 45; $row <= 336; $row++) : ?>
         <?php $prev_row = $row - 1; ?>
         <tr>
-          <td data-cell="<?= "A{$row}" ?>" data-format="" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
-          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(OR(A1=26,A1=52),IF(A1=26,IF(A{$row}=1,F7,B{$prev_row}+14),IF(A1=52,IF(A{$row}=1,F7,B{$prev_row}+7),'n/a')),IF(A1=24,DATE(YEAR(F7),MONTH(F7)+(A{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))),IF(DAY(DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7)))<&gt;DAY(F7),DATE(YEAR(F7),MONTH(F7)+A{$row},0),DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7))))))" ?>"></td>
-          <td data-cell="<?= "C{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(MOD(A{$row},A1)=0,A{$row}/A1,''))" ?>"></td>
-          <td data-cell="<?= "D{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(W11,IF(OR(A{$row}=1,A{$row}<K$19*A1),F5,MIN(K$20,IF(MOD(A{$row}-1,K$22)=0,MAX(K$21,D{$prev_row}+K$23),D{$prev_row}))),F5))" ?>"></td>
-          <td data-cell="<?= "E{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/W5)^(W5/A1))-1)*J{$prev_row},2))" ?>"></td>
-          <td data-cell="<?= "F{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=W8,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/W5)^(W5/12))-1,(W8-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/W5)^(W5/12))-1,(W8-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/W5)^(W5/A1))-1,W8-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
-          <td data-cell="<?= "G{$row}" ?>" data-format="" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+IF(MOD(A{$row}-F23,A1)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,A1)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)-F{$row}))))" ?>"></td>
-          <td data-cell="<?= "H{$row}" ?>" data-format="" class="todo" xdata-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
-          <td data-cell="<?= "I{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
-          <td data-cell="<?= "J{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',J{$prev_row}-I{$row})" ?>"></td>
-          <td data-cell="<?= "K{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',L38*E{$row})" ?>"></td>
-          <td data-cell="<?= "L{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',SUM(K{$row}:K{$row}))" ?>"></td>
+          <td data-cell="<?= "A{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
+          <td data-cell="<?= "B{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',IF(OR(A1=26,A1=52),IF(A1=26,IF(A{$row}=1,F7,B{$prev_row}+14),IF(A1=52,IF(A{$row}=1,F7,B{$prev_row}+7),'n/a')),IF(A1=24,DATE(YEAR(F7),MONTH(F7)+(A{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))),IF(DAY(DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7)))<&gt;DAY(F7),DATE(YEAR(F7),MONTH(F7)+A{$row},0),DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7))))))" ?>"></td>
+          <td data-cell="<?= "C{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',IF(MOD(A{$row},A1)=0,A{$row}/A1,''))" ?>"></td>
+          <td data-cell="<?= "D{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',IF(W11,IF(OR(A{$row}=1,A{$row}<K$19*A1),F5,MIN(K$20,IF(MOD(A{$row}-1,K$22)=0,MAX(K$21,D{$prev_row}+K$23),D{$prev_row}))),F5))" ?>"></td>
+          <td data-cell="<?= "E{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/W5)^(W5/A1))-1)*J{$prev_row},2))" ?>"></td>
+          <td data-cell="<?= "F{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',IF(A{$row}=W8,J{$prev_row}+E{$row},MIN(J{$prev_row}+E{$row},IF(D{$row}=D{$prev_row},F{$prev_row},IF(F9='Acc Bi-Weekly',ROUND((-PMT(((1+D{$row}/W5)^(W5/12))-1,(W8-A{$row}+1)*12/26,J{$prev_row}))/2,2),IF(F9='Acc Weekly',ROUND((-PMT(((1+D{$row}/W5)^(W5/12))-1,(W8-A{$row}+1)*12/52,J{$prev_row}))/4,2),ROUND(-PMT(((1+D{$row}/W5)^(W5/A1))-1,W8-A{$row}+1,J{$prev_row}),2)))))))" ?>"></td>
+          <td data-cell="<?= "G{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(OR(A{$row}='',A{$row}<F19),'',IF(J{$prev_row}<=F{$row},0,IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+F{$row}&gt;=J{$prev_row}+E{$row},J{$prev_row}+E{$row}-F{$row},IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+IF(IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)+IF(MOD(A{$row}-F23,A1)=0,F22,0)+F{$row}<J{$prev_row}+E{$row},IF(MOD(A{$row}-F23,A1)=0,F22,0),J{$prev_row}+E{$row}-IF(AND(A{$row}&gt;=F19,MOD(A{$row}-F19,F21)=0),F20,0)-F{$row}))))" ?>"></td>
+          <td data-cell="<?= "H{$row}" ?>" data-format="" data-progress="wip" xdata-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
+          <td data-cell="<?= "I{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
+          <td data-cell="<?= "J{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',J{$prev_row}-I{$row})" ?>"></td>
+          <td data-cell="<?= "K{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',L38*E{$row})" ?>"></td>
+          <td data-cell="<?= "L{$row}" ?>" data-format="" data-progress="wip" data-formula="<?= "IF(A{$row}='','',SUM(K{$row}:K{$row}))" ?>"></td>
         </tr>
       <?php endfor; ?>
     </tbody>

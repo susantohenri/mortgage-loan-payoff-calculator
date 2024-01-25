@@ -65,7 +65,7 @@ table.payment-schedule tbody th {
   background-color: #d3d9eb;
 }
 
-.todo {
+[data-progress="wip"] {
   background-color: red !important;
   color: yellow !important;
 }
