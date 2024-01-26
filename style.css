@@ -69,3 +69,7 @@ table.payment-schedule tbody th {
   background-color: red !important;
   color: yellow !important;
 }
+
+div.hidden {
+  display: none;
+}

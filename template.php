@@ -98,6 +98,33 @@
       </tbody>
     </table>
 
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2">Totals Assuming No Extra Payments</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Payments</td>
+          <td>
+            <input type="text" data-cell="E31" data-format="$0,0" data-progress="wip" data-formula="SUM(R:R)" value="306608">
+          </td>
+        </tr>
+        <tr>
+          <td>Total Interest</td>
+          <td>
+            <input type="text" data-cell="E32" data-format="$0,0" data-progress="wip" data-formula="E31-F4" value="156608">
+          </td>
+        </tr>
+        <tr>
+          <td>Periods Per Year</td>
+          <td>
+            <input type="text" data-cell="E33" data-format="0" data-formula="W10" value="12">
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <!-- hidden tables: end -->
 
@@ -233,12 +260,6 @@
       </table>
       <!-- table-left-3:end -->
 
-      <!-- hidden-left:begin -->
-      <input type="text" data-cell="E31" data-format="$0,0" data-progress="wip" data-formula="SUM(R:R)" value="306608">
-      <input type="text" data-cell="E32" data-format="$0,0" data-progress="wip" data-formula="E31-F4" value="156608">
-      <input type="text" data-cell="E33" data-format="W10" data-formula="" value="12">
-      <!-- hidden-left:end -->
-
       <!-- graph-left:begin -->
       <div>
         Balance Over Time
@@ -265,7 +286,7 @@
           </tr>
           <tr>
             <td>Date</td>
-            <td data-cell="K5" data-format="" data-progress="wip" data-formula="OFFSET(B43,1+K4*A1,0,1,1)" class="output">12/1/2023</td>
+            <td data-cell="K5" data-format="" data-progress="wip" data-formula="OFFSET(B43,1+K4*W10,0,1,1)" class="output">12/1/2023</td>
           </tr>
           <tr>
             <td>Interest Paid</td>
@@ -295,7 +316,7 @@
         <tbody>
           <tr>
             <td>Years Until Paid Off</td>
-            <td data-cell="K11" data-format="0,0.00" data-progress="wip" data-formula="ROUND(MAX(A45:A1605)/A1,2)" class="output">24.33</td>
+            <td data-cell="K11" data-format="0,0.00" data-progress="wip" data-formula="ROUND(MAX(A45:A1605)/W10,2)" class="output">24.33</td>
           </tr>
           <tr>
             <td>Number of Payments</td>
@@ -329,7 +350,12 @@
         <tbody>
           <tr>
             <td>Variable or Fixed Rate</td>
-            <td><input data-cell="K18" data-format="" data-formula="" value="Fixed Rate" type="text"></td>
+            <td>
+              <select data-cell="K18" data-format="" data-formula="">
+                <option value="Fixed Rate">Fixed Rate</option>
+                <option value="Variable Rate">Variable Rate</option>
+              </select>
+            </td>
           </tr>
           <tr>
             <td>Years Rate Remains Fixed</td>
@@ -381,7 +407,7 @@
           </tr>
           <tr>
             <td>Effective Rate</td>
-            <td data-cell="L39" data-format="0.000%" data-progress="wip" data-formula="(1-L38)*F5" class="output">4.125</td>
+            <td data-cell="L39" data-format="0.000%" data-formula="(1-L38)*F5" class="output">4.125</td>
           </tr>
           <tr>
             <td>Tax Returned</td>

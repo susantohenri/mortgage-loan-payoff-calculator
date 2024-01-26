@@ -4,10 +4,6 @@ jQuery(document).ready(function () {
         return 321
     })
     target.calx()
-    // target.calx(`registerVariable`, {
-    // compound_periods: () => { return this.getCellRange(`V14`, `V15`) }
-    // compound_periods: getCell(`V14`)
-    // })
     target.calx(`registerVariable`, `compound_periods`, () => {
         return jQuery(`[data-cell="F8"]`).val()
     })
