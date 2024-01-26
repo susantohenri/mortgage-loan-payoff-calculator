@@ -150,18 +150,18 @@
           <td data-cell="P44" data-format="" data-formula=""></td>
           <td data-cell="Q44" data-format="" data-formula=""></td>
           <td data-cell="R44" data-format="" data-formula=""></td>
-          <td data-cell="T44" data-format="" data-formula=""></td>
-          <td data-cell="U44" data-format="$0,0.00" data-formula="F4"></td>
+          <td data-cell="S44" data-format="" data-formula=""></td>
+          <td data-cell="T44" data-format="$0,0.00" data-formula="F4"></td>
         </tr>
         <?php for ($row = 45; $row <= 404; $row++) : $prev_row = $row - 1; ?>
           <tr>
             <td data-cell="<?= "N{$row}" ?>" data-format="" data-formula="<?= "IF(T{$prev_row}='','',IF(OR(N{$prev_row}>=W8,ROUND(T{$prev_row},2)<=0),'',N{$prev_row}+1))" ?>"></td>
-            <td data-cell="<?= "O{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',IF(OR(W10=26,W10=52),IF(W10=26,IF(N{$row}=1,F7,O{$prev_row}+14),IF(W10=52,IF(N{$row}=1,F7,O{$prev_row}+7),'n/a')),IF(W10=24,DATE(YEAR(F7),MONTH(F7)+(N{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(N{$row},2)=0),1,0),IF(MOD(N{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))),IF(DAY(DATE(YEAR(F7),MONTH(F7)+N{$row}-1,DAY(F7)))<&gt;DAY(F7),DATE(YEAR(F7),MONTH(F7)+N{$row},0),DATE(YEAR(F7),MONTH(F7)+N{$row}-1,DAY(F7))))))" ?>"></td>
-            <td data-cell="<?= "P{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',IF(W11,IF(N{$row}<K19*W10,F5,IF(K23&gt;=0,MIN(K20,F5+K23*ROUNDUP((N{$row}-K19*W10)/K22,0)),MAX(K21,F5+K23*ROUNDUP((N{$row}-K19*W10)/K22,0)))),F5))" ?>"></td>
-            <td data-cell="<?= "Q{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',ROUND((((1+P{$row}/W5)^(W5/W10))-1)*T{$prev_row},2))" ?>"></td>
-            <td data-cell="<?= "R{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',IF(N{$row}=W8,T{$prev_row}+Q{$row},MIN(T{$prev_row}+Q{$row},IF(P{$row}=P{$prev_row},R{$prev_row},ROUND(-PMT(((1+P{$row}/W5)^(W5/W10))-1,W8-N{$row}+1,T{$prev_row}),2)))))" ?>"></td>
-            <td data-cell="<?= "S{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',R{$row}-Q{$row})" ?>"></td>
-            <td data-cell="<?= "T{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',T{$prev_row}-S{$row})" ?>"></td>
+            <td data-cell="<?= "O{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',IF(OR(W10=26,W10=52),IF(W10=26,IF(N{$row}=1,F7,O{$prev_row}+14),IF(W10=52,IF(N{$row}=1,F7,O{$prev_row}+7),'n/a')),IF(W10=24,DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+(N{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(N{$row},2)=0),1,0),IF(MOD(N{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))),'MM/DD/YYYY'),IF(DAY(DATE(YEAR(F7),MONTH(F7)+N{$row}-1,DAY(F7)))<&gt;DAY(F7),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+N{$row},0), 'MM/DD/YYYY'),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+N{$row}-1,DAY(F7)),'MM/DD/YYYY')))))" ?>"></td>
+            <td data-cell="<?= "P{$row}" ?>" data-format="0.000%" data-formula="<?= "IF(N{$row}='','',IF(W11,IF(N{$row}<K19*W10,F5,IF(K23&gt;=0,MIN(K20,F5+K23*ROUNDUP((N{$row}-K19*W10)/K22,0)),MAX(K21,F5+K23*ROUNDUP((N{$row}-K19*W10)/K22,0)))),F5))" ?>"></td>
+            <td data-cell="<?= "Q{$row}" ?>" data-format="0.00" data-formula="<?= "IF(N{$row}='','',ROUND((((1+P{$row}/W5)^(W5/W10))-1)*T{$prev_row},2))" ?>"></td>
+            <td data-cell="<?= "R{$row}" ?>" data-format="0.00" data-formula="<?= "IF(N{$row}='','',IF(N{$row}=W8,T{$prev_row}+Q{$row},MIN(T{$prev_row}+Q{$row},IF(P{$row}=P{$prev_row},R{$prev_row},ROUND(-PMT(((1+P{$row}/W5)^(W5/W10))-1,W8-N{$row}+1,T{$prev_row}),2)))))" ?>"></td>
+            <td data-cell="<?= "S{$row}" ?>" data-format="0.00" data-formula="<?= "IF(N{$row}='','',R{$row}-Q{$row})" ?>"></td>
+            <td data-cell="<?= "T{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(N{$row}='','',T{$prev_row}-S{$row})" ?>"></td>
           </tr>
         <?php endfor; ?>
       </tbody>
