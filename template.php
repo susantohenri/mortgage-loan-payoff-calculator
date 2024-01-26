@@ -12,7 +12,7 @@
   !-- VARIABLES:END -->
 
   <!-- hidden tables: begin -->
-  <div class="row-with-2-columns hidden">
+  <div class="row-with-2-columns">
     <table>
       <thead>
         <tr>
@@ -254,7 +254,13 @@
         </tbody>
         <tfoot>
           <tr>
-            <th>Interest Savings</th>
+            <th>
+              Interest Savings<br>
+              E32 <input type="text" data-formula="E32"><br>
+              K15 <input type="text" data-formula="K15"><br>
+              E31 <input type="text" data-formula="E31"><br>
+              F4 <input type="text" data-formula="F4"><br>
+            </th>
             <th data-cell="F25" data-format="0,0.00" data-progress="wip" data-formula="IF((E32-K15)<0,0,(E32-K15))">32724.1</th>
           </tr>
         </tfoot>
@@ -287,21 +293,21 @@
           </tr>
           <tr>
             <td>Date</td>
-            <td data-cell="K5" data-format="" data-progress="wip" data-formula="OFFSET(B43,1+K4*W10,0,1,1)" class="result">12/1/2023</td>
+            <td data-cell="K5" data-format="" data-formula="" class="result"></td>
           </tr>
           <tr>
             <td>Interest Paid</td>
-            <td data-cell="K6" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="result">39065.68</td>
+            <td data-cell="K6" data-format="0,0.00" data-formula="" class="result">39065.68</td>
           </tr>
           <tr>
             <td>Principal Paid</td>
-            <td data-cell="K7" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="result">17035.12</td>
+            <td data-cell="K7" data-format="0,0.00" data-formula="" class="result">17035.12</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Outstanding Balance</th>
-            <th data-cell="K8" data-format="0,0.00" data-progress="wip" data-formula="IF(OFFSET(J43,1+K4*A1,0,1,1)='',0,OFFSET(J43,1+K4*A1,0,1,1))">132964.88</th>
+            <th data-cell="K8" data-format="0,0.00" data-formula="">132964.88</th>
           </tr>
         </tfoot>
       </table>
@@ -324,8 +330,8 @@
             <td data-cell="K12" data-format="" data-formula="MAX(A44:A1605)" class="result">292</td>
           </tr>
           <tr>
-            <td>Last Payment Date</td>
-            <td data-cell="K13" data-format="" data-progress="wip" data-formula="OFFSET(B43,MAX(A45:A1605)+1,0,1,1)" class="result">4/1/2043</td>
+            <td>Last Payment Date <input type="hidden" id="max_a45_a1605_1" data-formula="MAX(A45:A1605)+1"></td>
+            <td data-cell="K13" data-format="" data-formula="" class="result">4/1/2043</td>
           </tr>
           <tr>
             <td>Total Payments</td>
