@@ -65,6 +65,10 @@ table.payment-schedule tbody th {
   background-color: #d3d9eb;
 }
 
+table.payment-schedule tbody td {
+  text-align: right;
+}
+
 [data-progress="wip"] {
   background-color: red !important;
   color: yellow !important;
@@ -72,4 +76,8 @@ table.payment-schedule tbody th {
 
 div.hidden {
   display: none;
+}
+
+[data-cell^="H"] {
+  background-color: yellow;
 }

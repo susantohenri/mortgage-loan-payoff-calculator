@@ -15,7 +15,9 @@ function mortgage_loan_payoff_calculator()
     wp_register_script('numeral', plugin_dir_url(__FILE__) . 'numeral.min.js', ['jquery']);
     wp_enqueue_script('numeral');
 
-    wp_register_script('calx', plugin_dir_url(__FILE__) . 'jquery-calx-2.2.8.min.js', ['jquery']);
+    wp_enqueue_script('moment');
+
+    wp_register_script('calx', plugin_dir_url(__FILE__) . 'jquery-calx-2.2.8.min.js', ['jquery', 'moment', 'numeral']);
     wp_enqueue_script('calx');
 
     wp_enqueue_script('life-calculator-script', plugins_url('script.js?v=' . uniqid(), __FILE__), array('jquery'), null, true);
