@@ -199,11 +199,11 @@
           </tr>
           <tr>
             <td>Yearly Property Taxes</td>
-            <td data-cell="F13" data-format="0,0.00" data-formula="F12*(1.8/100)" class="output">2700</td>
+            <td data-cell="F13" data-format="0,0.00" data-formula="F12*(1.8/100)" class="result">2700</td>
           </tr>
           <tr>
             <td>Yearly H.O. Insurance</td>
-            <td data-cell="F14" data-format="0,0.00" data-formula="F12*(0.4/100)" class="output">600</td>
+            <td data-cell="F14" data-format="0,0.00" data-formula="F12*(0.4/100)" class="result">600</td>
           </tr>
           <tr>
             <td>Monthly PMI</td>
@@ -249,7 +249,7 @@
           </tr>
           <tr>
             <td>Total Extra Payments</td>
-            <td data-cell="F24" data-format="0,0.00" data-progress="wip" data-formula="SUM(G45:H1604)" class="output">24000</td>
+            <td data-cell="F24" data-format="0,0.00" data-formula="SUM(G45:H1604)" class="result">24000</td>
           </tr>
         </tbody>
         <tfoot>
@@ -287,15 +287,15 @@
           </tr>
           <tr>
             <td>Date</td>
-            <td data-cell="K5" data-format="" data-progress="wip" data-formula="OFFSET(B43,1+K4*W10,0,1,1)" class="output">12/1/2023</td>
+            <td data-cell="K5" data-format="" data-progress="wip" data-formula="OFFSET(B43,1+K4*W10,0,1,1)" class="result">12/1/2023</td>
           </tr>
           <tr>
             <td>Interest Paid</td>
-            <td data-cell="K6" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="output">39065.68</td>
+            <td data-cell="K6" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(E43,2,0,K4*A1,1))" class="result">39065.68</td>
           </tr>
           <tr>
             <td>Principal Paid</td>
-            <td data-cell="K7" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="output">17035.12</td>
+            <td data-cell="K7" data-format="0,0.00" data-progress="wip" data-formula="SUM(OFFSET(I43,2,0,K4*A1,1))" class="result">17035.12</td>
           </tr>
         </tbody>
         <tfoot>
@@ -317,25 +317,25 @@
         <tbody>
           <tr>
             <td>Years Until Paid Off</td>
-            <td data-cell="K11" data-format="0,0.00" data-progress="wip" data-formula="ROUND(MAX(A45:A1605)/W10,2)" class="output">24.33</td>
+            <td data-cell="K11" data-format="0,0.00" data-formula="ROUND(MAX(A45:A1605)/W10,2)" class="result">24.33</td>
           </tr>
           <tr>
             <td>Number of Payments</td>
-            <td data-cell="K12" data-format="0,0" data-progress="wip" data-formula="MAX(A43:A1605)" class="output">292</td>
+            <td data-cell="K12" data-format="" data-formula="MAX(A44:A1605)" class="result">292</td>
           </tr>
           <tr>
             <td>Last Payment Date</td>
-            <td data-cell="K13" data-format="" data-progress="wip" data-formula="OFFSET(B43,MAX(A45:A1605)+1,0,1,1)" class="output">4/1/2043</td>
+            <td data-cell="K13" data-format="" data-progress="wip" data-formula="OFFSET(B43,MAX(A45:A1605)+1,0,1,1)" class="result">4/1/2043</td>
           </tr>
           <tr>
             <td>Total Payments</td>
-            <td data-cell="K14" data-format="0,0.00" data-progress="wip" data-formula="SUM(E45:E1604)+SUM(I45:I1604)" class="output">271883.65</td>
+            <td data-cell="K14" data-format="0,0.00" data-formula="SUM(E45:E1604)+SUM(I45:I1604)" class="result">271883.65</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Total Interest</th>
-            <th data-cell="K15" data-format="0,0.00" data-progress="wip" data-formula="SUM(E45:E1604)">121883.65</th>
+            <th data-cell="K15" data-format="0,0.00" data-formula="SUM(E45:E1604)">121883.65</th>
           </tr>
         </tfoot>
       </table>
@@ -360,29 +360,29 @@
           </tr>
           <tr>
             <td>Years Rate Remains Fixed</td>
-            <td data-cell="K19" data-format="0,0" data-formula="" class="output">3</td>
+            <td data-cell="K19" data-format="0,0" data-formula="" class="result">3</td>
           </tr>
           <tr>
             <td>Interest Rate Cap</td>
-            <td data-cell="K20" data-format="0.00%" data-formula="" class="output">12</td>
+            <td data-cell="K20" data-format="0.00%" data-formula="" class="result">12</td>
           </tr>
           <tr>
             <td>Interest Rate Minimum</td>
-            <td data-cell="K21" data-format="0.00%" data-formula="" class="output">4</td>
+            <td data-cell="K21" data-format="0.00%" data-formula="" class="result">4</td>
           </tr>
           <tr>
             <td>Periods Between Adjustments</td>
-            <td data-cell="K22" data-format="0,0" data-formula="" class="output">12</td>
+            <td data-cell="K22" data-format="0,0" data-formula="" class="result">12</td>
           </tr>
           <tr>
             <td>Estimated Adjustment</td>
-            <td data-cell="K23" data-format="0,0.00%" data-formula="" class="output">0.25</td>
+            <td data-cell="K23" data-format="0,0.00%" data-formula="" class="result">0.25</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <th>Highest Monthly Payment</th>
-            <th data-cell="K24" data-format="0,0.00" data-progress="wip" data-formula="MAX(F45:F1604)">851.68</th>
+            <th data-cell="K24" data-format="0,0.00" data-formula="MAX(F45:F1604)">851.68</th>
           </tr>
         </tfoot>
       </table>
@@ -408,11 +408,11 @@
           </tr>
           <tr>
             <td>Effective Rate</td>
-            <td data-cell="L39" data-format="0.000%" data-formula="(1-L38)*F5" class="output">4.125</td>
+            <td data-cell="L39" data-format="0.000%" data-formula="(1-L38)*F5" class="result">4.125</td>
           </tr>
           <tr>
             <td>Tax Returned</td>
-            <td data-cell="L40" data-format="0,0" data-progress="wip" data-formula="SUM(K45:K1604)" class="output">30471</td>
+            <td data-cell="L40" data-format="0,0" data-formula="SUM(K45:K1604)" class="result">30471</td>
           </tr>
         </tbody>
       </table>

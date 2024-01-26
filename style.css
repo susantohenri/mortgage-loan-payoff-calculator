@@ -35,7 +35,7 @@
 }
 
 .row-with-2-columns td:nth-child(odd),
-td.output {
+td.result {
   background-color: #d3d9eb;
 }
 
