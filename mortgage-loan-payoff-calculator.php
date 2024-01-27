@@ -17,7 +17,25 @@ function mortgage_loan_payoff_calculator()
 
     wp_enqueue_script('moment');
 
-    wp_register_script('calx', plugin_dir_url(__FILE__) . 'jquery-calx-2.2.8.min.js', ['jquery', 'moment', 'numeral']);
+    wp_register_script('canvaswrapper', plugin_dir_url(__FILE__) . 'jquery.canvaswrapper.js', ['jquery']);
+    wp_enqueue_script('canvaswrapper');
+    wp_register_script('colorhelpers', plugin_dir_url(__FILE__) . 'jquery.colorhelpers.js', ['jquery']);
+    wp_enqueue_script('colorhelpers');
+
+    wp_register_script('flot', plugin_dir_url(__FILE__) . 'jquery.flot.js', ['jquery', 'canvaswrapper', 'colorhelpers']);
+    wp_enqueue_script('flot');
+
+    wp_register_script('saturated', plugin_dir_url(__FILE__) . 'jquery.flot.saturated.js', ['flot']);
+    wp_enqueue_script('saturated');
+    wp_register_script('browser', plugin_dir_url(__FILE__) . 'jquery.flot.browser.js', ['flot']);
+    wp_enqueue_script('browser');
+    wp_register_script('drawSeries', plugin_dir_url(__FILE__) . 'jquery.flot.drawSeries.js', ['flot']);
+    wp_enqueue_script('drawSeries');
+    wp_register_script('uiConstants', plugin_dir_url(__FILE__) . 'jquery.flot.uiConstants.js', ['flot']);
+    wp_enqueue_script('uiConstants');
+
+
+    wp_register_script('calx', plugin_dir_url(__FILE__) . 'jquery-calx-2.2.8.min.js', ['jquery', 'moment', 'numeral', 'flot']);
     wp_enqueue_script('calx');
 
     wp_enqueue_script('life-calculator-script', plugins_url('script.js?v=' . uniqid(), __FILE__), array('jquery'), null, true);

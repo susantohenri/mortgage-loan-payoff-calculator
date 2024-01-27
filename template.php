@@ -15,7 +15,7 @@
   !-- VARIABLES:END -->
 
   <!-- hidden tables: begin -->
-  <div class="row-with-2-columns hidden">
+  <div class="row-with-2-columns">
     <table>
       <thead>
         <tr>
@@ -304,6 +304,7 @@
       <!-- graph-left:begin -->
       <div>
         Balance Over Time
+        <div data-formula="GRAPH(T43:T1604, ['legend=O43:O1604', 'label=J43:J1604', 'orientation=vertical'])"></div>
       </div>
       <!-- graph-left:end -->
 
@@ -431,6 +432,7 @@
       <!-- graph-right:begin -->
       <div>
         Interest Rate History
+        <div data-formula="GRAPH(D43:D1604, ['legend=A43:A1604', 'label=D43:D1604', 'orientation=vertical'])"></div>
       </div>
       <!-- graph-right:end -->
 
