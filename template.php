@@ -15,7 +15,7 @@
   !-- VARIABLES:END -->
 
   <!-- hidden tables: begin -->
-  <div class="row-with-2-columns">
+  <div class="row-with-2-columns hidden">
     <table>
       <thead>
         <tr>
@@ -112,13 +112,13 @@
         <tr>
           <td>Total Payments</td>
           <td>
-            <input type="text" data-cell="E31" data-format="$0,0" data-progress="wip" data-formula="SUM(R:R)" value="306608">
+            <input type="text" data-cell="E31" data-format="$0,0" data-formula="SUM(R45:R404)" value="306608">
           </td>
         </tr>
         <tr>
           <td>Total Interest</td>
           <td>
-            <input type="text" data-cell="E32" data-format="$0,0" data-progress="wip" data-formula="E31-F4" value="156608">
+            <input type="text" data-cell="E32" data-format="$0,0" data-formula="E31-F4" value="156608">
           </td>
         </tr>
         <tr>
@@ -294,14 +294,8 @@
         </tbody>
         <tfoot>
           <tr>
-            <th>
-              Interest Savings<br>
-              E32 <input type="text" data-formula="E32"><br>
-              K15 <input type="text" data-formula="K15"><br>
-              E31 <input type="text" data-formula="E31"><br>
-              F4 <input type="text" data-formula="F4"><br>
-            </th>
-            <th data-cell="F25" data-format="0,0.00" data-progress="wip" data-formula="IF((E32-K15)<0,0,(E32-K15))">32724.1</th>
+            <th>Interest Savings</th>
+            <th data-cell="F25" data-format="0,0.00" data-formula="IF((E32-K15)<0,0,(E32-K15))">32724.1</th>
           </tr>
         </tfoot>
       </table>
