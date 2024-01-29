@@ -1,11 +1,15 @@
 const target = jQuery(`.calx`)
 jQuery(document).ready(function () {
-    target.calx()
-    K5()
-    K6()
-    K7()
-    K8()
-    K13()
+    target.calx({
+        onAfterCalculate: () => {
+            K5()
+            K6()
+            K7()
+            K8()
+            K13()
+            graph_left()
+        }
+    })
 })
 
 function K5() {
@@ -71,4 +75,27 @@ function K13() {
     jQuery(`[data-cell="K13"]`).html(target.html()).trigger(`change`)
 
     max_a45_a1605_1.off(`change.K13`).on(`change.K13`, K13)
+}
+
+function graph_left() {
+    const ctx = document.getElementById('graph_left');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 }

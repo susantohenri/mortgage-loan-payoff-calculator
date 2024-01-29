@@ -304,7 +304,7 @@
       <!-- graph-left:begin -->
       <div>
         Balance Over Time
-        <div data-formula="GRAPH(T43:T1604, ['legend=O43:O1604', 'label=J43:J1604', 'orientation=vertical'])"></div>
+        <canvas id="graph_left"></canvas>
       </div>
       <!-- graph-left:end -->
 
@@ -432,7 +432,7 @@
       <!-- graph-right:begin -->
       <div>
         Interest Rate History
-        <div data-formula="GRAPH(D43:D1604, ['legend=A43:A1604', 'label=D43:D1604', 'orientation=vertical'])"></div>
+        <canvas id="right_graph"></canvas>
       </div>
       <!-- graph-right:end -->
 
