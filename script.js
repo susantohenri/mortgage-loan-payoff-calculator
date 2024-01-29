@@ -7,7 +7,7 @@ jQuery(document).ready(function () {
             K7()
             K8()
             K13()
-            graph_left()
+            setTimeout(graph, 0)
         }
     })
 })
@@ -77,25 +77,50 @@ function K13() {
     max_a45_a1605_1.off(`change.K13`).on(`change.K13`, K13)
 }
 
-function graph_left() {
-    const ctx = document.getElementById('graph_left');
+function graph() {
+    const left_ctx = document.getElementById('graph_left')
+    const right_ctx = document.getElementById('graph_right')
 
-    new Chart(ctx, {
-        type: 'bar',
+    let left_absis = []
+    let xtra_pymts = []
+    let balance = []
+
+    let right_absis = []
+    let intrst_rate_hstory = []
+    for (let row = 45; row <= 1604; row++) {
+        if (0 < jQuery(`[data-cell="O${row}"]`).length) left_absis.push(jQuery(`[data-cell="O${row}"]`).html())
+        if (0 < jQuery(`[data-cell="T${row}"]`).length) xtra_pymts.push(jQuery(`[data-cell="T${row}"]`).html().replace(`,`, ``))
+        if (0 < jQuery(`[data-cell="J${row}"]`).length) balance.push(jQuery(`[data-cell="J${row}"]`).html().replace(`,`, ``))
+
+        if (0 < jQuery(`[data-cell="A${row}"]`).length) right_absis.push(jQuery(`[data-cell="A${row}"]`).html())
+        if (0 < jQuery(`[data-cell="D${row}"]`).length) intrst_rate_hstory.push(jQuery(`[data-cell="D${row}"]`).html().replace(`%`, ``))
+    }
+
+    new Chart(left_ctx, {
+        type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: left_absis,
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
+                label: 'Balance',
+                data: balance,
+                backgroundColor: `blue`
+            }, {
+                label: 'No Extra Payments',
+                data: xtra_pymts,
+                backgroundColor: `red`
             }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
         }
-    });
+    })
+
+    new Chart(right_ctx, {
+        type: 'line',
+        data: {
+            labels: right_absis,
+            datasets: [{
+                label: ``,
+                data: intrst_rate_hstory,
+                backgroundColor: `blue`
+            }]
+        }
+    })
 }

@@ -432,7 +432,7 @@
       <!-- graph-right:begin -->
       <div>
         Interest Rate History
-        <canvas id="right_graph"></canvas>
+        <canvas id="graph_right"></canvas>
       </div>
       <!-- graph-right:end -->
 
