@@ -1,4 +1,4 @@
-<div class="calx">
+<div id="mortgage_loan_payoff_calculator">
 
   <!-- VARIABLES:BEGIN --
   CP = W5

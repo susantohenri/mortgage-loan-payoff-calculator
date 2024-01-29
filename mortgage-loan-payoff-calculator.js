@@ -1,16 +1,19 @@
-const target = jQuery(`.calx`)
+const target = jQuery(`#mortgage_loan_payoff_calculator`)
 jQuery(document).ready(function () {
     target.calx({
-        onAfterCalculate: () => {
-            K5()
-            K6()
-            K7()
-            K8()
-            K13()
-            setTimeout(graph, 0)
-        }
+        onAfterCalculate: additional_functions
     })
+    additional_functions()
 })
+
+function additional_functions() {
+    K5()
+    K6()
+    K7()
+    K8()
+    K13()
+    setTimeout(graph, 0)
+}
 
 function K5() {
     // OFFSET(B43,1+K4*W10,0,1,1)
