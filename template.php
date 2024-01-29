@@ -15,7 +15,7 @@
   !-- VARIABLES:END -->
 
   <!-- hidden tables: begin -->
-  <div class="row-with-2-columns">
+  <div class="row-with-2-columns hidden">
     <table>
       <thead>
         <tr>
