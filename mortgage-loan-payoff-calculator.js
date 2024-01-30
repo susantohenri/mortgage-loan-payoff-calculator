@@ -1,4 +1,6 @@
 const target = jQuery(`#mortgage_loan_payoff_calculator`)
+let left_chart = null
+let right_chart = null
 jQuery(document).ready(function () {
     target.calx({
         onAfterCalculate: additional_functions
@@ -99,31 +101,44 @@ function graph() {
         if (0 < jQuery(`[data-cell="D${row}"]`).length) intrst_rate_hstory.push(jQuery(`[data-cell="D${row}"]`).html().replace(`%`, ``))
     }
 
-    new Chart(left_ctx, {
-        type: 'line',
-        data: {
-            labels: left_absis,
-            datasets: [{
-                label: 'Balance',
-                data: balance,
-                backgroundColor: `blue`
-            }, {
-                label: 'No Extra Payments',
-                data: xtra_pymts,
-                backgroundColor: `red`
-            }]
-        }
-    })
+    if (null === left_chart) {
+        left_chart = new Chart(left_ctx, {
+            type: 'line',
+            data: {
+                labels: left_absis,
+                datasets: [{
+                    label: 'Balance',
+                    data: balance,
+                    backgroundColor: `blue`
+                }, {
+                    label: 'No Extra Payments',
+                    data: xtra_pymts,
+                    backgroundColor: `red`
+                }]
+            }
+        })
+    } else {
+        left_chart.data.labels = left_absis
+        left_chart.data.datasets[0].data = balance
+        left_chart.data.datasets[1].data = xtra_pymts
+        left_chart.update()
+    }
 
-    new Chart(right_ctx, {
-        type: 'line',
-        data: {
-            labels: right_absis,
-            datasets: [{
-                label: ``,
-                data: intrst_rate_hstory,
-                backgroundColor: `blue`
-            }]
-        }
-    })
+    if (null === right_chart) {
+        right_chart = new Chart(right_ctx, {
+            type: 'line',
+            data: {
+                labels: right_absis,
+                datasets: [{
+                    label: ``,
+                    data: intrst_rate_hstory,
+                    backgroundColor: `blue`
+                }]
+            }
+        })
+    } else {
+        right_chart.data.labels = right_absis
+        right_chart.data.datasets[0].data = intrst_rate_hstory
+        right_chart.update()
+    }
 }

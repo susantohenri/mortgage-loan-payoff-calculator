@@ -69,6 +69,10 @@ table.payment-schedule tbody td {
   text-align: right;
 }
 
+table.payment-schedule tbody tr:has(> [data-cell^="A"]:empty) {
+  display: none;
+}
+
 [data-progress="wip"] {
   background-color: red !important;
   color: yellow !important;
@@ -78,6 +82,14 @@ div.hidden {
   display: none;
 }
 
-[data-cell^="H"] {
+td:has(> [data-cell^="H"]) {
   background-color: yellow;
+}
+
+[data-cell^="H"] {
+  width: 75px;
+}
+
+[data-cell="F4"] {
+  width: 100px !important;
 }
