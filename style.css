@@ -70,7 +70,7 @@ table.payment-schedule tbody td {
 }
 
 table.payment-schedule tbody tr:has(> [data-cell^="A"]:empty) {
-  display: none;
+  /* display: none; */
 }
 
 [data-progress="wip"] {

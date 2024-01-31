@@ -1,9 +1,13 @@
 const target = jQuery(`#mortgage_loan_payoff_calculator`)
 let left_chart = null
 let right_chart = null
+let stop = false
 jQuery(document).ready(function () {
     target.calx({
-        onAfterCalculate: additional_functions
+        onAfterCalculate: () => {
+            additional_functions()
+            setTimeout(calculation_step, 0)
+        }
     })
     additional_functions()
 })
@@ -141,4 +145,24 @@ function graph() {
         right_chart.data.datasets[0].data = intrst_rate_hstory
         right_chart.update()
     }
+}
+
+function calculation_step() {
+    console.log(Math.random(), `calculation_step`)
+
+    const tbody = jQuery(`table.payment-schedule tbody`)
+    const last_row = tbody.find(`tr`).last()
+    const last_row_j = parseInt(last_row.find(`[data-cell^="J"]`).html())
+    console.log(Math.random(), last_row_j)
+    if (0 === last_row_j || isNaN(last_row_j)) return false;
+
+    const last_row_num = parseInt(last_row.find(`td`).eq(0).attr(`data-cell`).replace(`A`, ``))
+    const template = `<tr>` + last_row.html().replaceAll(last_row_num, `current_row`).replaceAll(last_row_num - 1, `prev_row`) + `</tr>`
+
+    for (let row = 1; row <= 100; row++) {
+        const current_row = last_row_num + row
+        const prev_row = current_row - 1
+        tbody.append(template.replaceAll(`current_row`, current_row).replaceAll(`prev_row`, prev_row))
+    }
+    target.calx()
 }
