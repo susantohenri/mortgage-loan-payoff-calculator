@@ -153,7 +153,7 @@
           <td data-cell="S44" data-format="" data-formula=""></td>
           <td data-cell="T44" data-format="$0,0.00" data-formula="F4"></td>
         </tr>
-        <?php for ($row = 45; $row <= 404; $row++) : $prev_row = $row - 1; ?>
+        <?php for ($row = 45; $row <= 360 + 45 - 1; $row++) : $prev_row = $row - 1; ?>
           <tr>
             <td data-cell="<?= "N{$row}" ?>" data-format="" data-formula="<?= "IF(T{$prev_row}='','',IF(OR(N{$prev_row}>=W8,ROUND(T{$prev_row},2)<=0),'',N{$prev_row}+1))" ?>"></td>
             <td data-cell="<?= "O{$row}" ?>" data-format="" data-formula="<?= "IF(N{$row}='','',IF(OR(W10=26,W10=52),IF(W10=26,IF(N{$row}=1,F7,O{$prev_row}+14),IF(W10=52,IF(N{$row}=1,F7,O{$prev_row}+7),'n/a')),IF(W10=24,DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+(N{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(N{$row},2)=0),1,0),IF(MOD(N{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))),'MM/DD/YYYY'),IF(DAY(DATE(YEAR(F7),MONTH(F7)+N{$row}-1,DAY(F7)))<&gt;DAY(F7),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+N{$row},0), 'MM/DD/YYYY'),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+N{$row}-1,DAY(F7)),'MM/DD/YYYY')))))" ?>"></td>
@@ -499,7 +499,7 @@
         <th data-cell="K44" data-format="" data-formula=""></th>
         <th data-cell="L44" data-format="" data-formula=""></th>
       </tr>
-      <?php for ($row = 45; $row <= 1604; $row++) : ?>
+      <?php for ($row = 45; $row <= 360 + 45 - 1; $row++) : ?>
         <?php $prev_row = $row - 1; ?>
         <tr>
           <td data-cell="<?= "A{$row}" ?>" data-format="" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
