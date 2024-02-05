@@ -1,20 +1,28 @@
 const target = jQuery(`#mortgage_loan_payoff_calculator`)
 let left_chart = null
 let right_chart = null
+let recalculated = false
+
 jQuery(document).ready(function () {
     target.calx({
         onAfterCalculate: additional_functions
     })
-    additional_functions()
 })
 
 function additional_functions() {
-    K5()
-    K6()
-    K7()
-    K8()
-    K13()
-    setTimeout(graph, 0)
+    if (recalculated) {
+        recalculated = false
+        return false
+    } else {
+        K5()
+        K6()
+        K7()
+        K8()
+        K13()
+        setTimeout(graph, 0)
+        recalculated = true
+        target.calx(`calculate`)
+    }
 }
 
 function K5() {

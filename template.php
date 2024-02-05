@@ -503,7 +503,7 @@
         <?php $prev_row = $row - 1; ?>
         <tr>
           <td data-cell="<?= "A{$row}" ?>" data-format="" data-formula="<?= "IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))" ?>"></td>
-          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF((IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1)))='','',IF(OR(W10=26,W10=52),IF(W10=26,IF((IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1)))=1,F7,B{$prev_row}+14),IF(W10=52,IF((IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1)))=1,F7,B{$prev_row}+7),'n/a')),IF(W10=24,DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+((IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1)))-1)/2+IF(AND(DAY(F7)&gt;=15,MOD((IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))),2)=0),1,0),IF(MOD((IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))),2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))), 'MM/DD/YYYY'),IF(DAY(DATE(YEAR(F7),MONTH(F7)+(IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1)))-1,DAY(F7)))<&gt;DAY(F7),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+(IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1))),0),'MM/DD/YYYY'),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+(IF(J{$prev_row}='','',IF(OR(A{$prev_row}>=W8,ROUND(J{$prev_row},2)<=0),'',A{$prev_row}+1)))-1,DAY(F7)),'MM/DD/YYYY')))))" ?>"></td>
+          <td data-cell="<?= "B{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(OR(W10=26,W10=52),IF(W10=26,IF(A{$row}=1,F7,B{$prev_row}+14),IF(W10=52,IF(A{$row}=1,F7,B{$prev_row}+7),'n/a')),IF(W10=24,DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+(A{$row}-1)/2+IF(AND(DAY(F7)&gt;=15,MOD(A{$row},2)=0),1,0),IF(MOD(A{$row},2)=0,IF(DAY(F7)&gt;=15,DAY(F7)-14,DAY(F7)+14),DAY(F7))), 'MM/DD/YYYY'),IF(DAY(DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7)))<&gt;DAY(F7),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+A{$row},0),'MM/DD/YYYY'),DATEFORMAT(DATE(YEAR(F7),MONTH(F7)+A{$row}-1,DAY(F7)),'MM/DD/YYYY')))))" ?>"></td>
           <td data-cell="<?= "C{$row}" ?>" data-format="" data-formula="<?= "IF(A{$row}='','',IF(MOD(A{$row},W10)=0,A{$row}/W10,''))" ?>"></td>
           <td data-cell="<?= "D{$row}" ?>" data-format="0.000%" data-formula="<?= "IF(A{$row}='','',IF(W11,IF(OR(A{$row}=1,A{$row}<K19*W10),F5,MIN(K20,IF(MOD(A{$row}-1,K22)=0,MAX(K21,D{$prev_row}+K23),D{$prev_row}))),F5))" ?>"></td>
           <td data-cell="<?= "E{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(A{$row}='','',ROUND((((1+D{$row}/W5)^(W5/W10))-1)*J{$prev_row},2))" ?>"></td>
@@ -514,7 +514,7 @@
           </td>
           <td data-cell="<?= "I{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(A{$row}='','',F{$row}-E{$row}+H{$row}+IF(G{$row}='',0,G{$row}))" ?>"></td>
           <td data-cell="<?= "J{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(A{$row}='','',J{$prev_row}-I{$row})" ?>"></td>
-          <td data-cell="<?= "K{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(A{$row}='','',L38*(IF(A{$row}='','',ROUND((((1+D{$row}/W5)^(W5/W10))-1)*J{$prev_row},2))))" ?>"></td>
+          <td data-cell="<?= "K{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(A{$row}='','',L38*E{$row})" ?>"></td>
           <td data-cell="<?= "L{$row}" ?>" data-format="0,0.00" data-formula="<?= "IF(A{$row}='','',SUM(K45:K{$row}))" ?>"></td>
         </tr>
       <?php endfor; ?>
